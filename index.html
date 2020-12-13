@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royalties App</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="css/style.css">
+<link rel="stylesheet" type="text/css"  href="css/tablestyle.css">
+<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="intro-text">
+          <h1>Royalties App</h1>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- About Section -->
+<div id="about" style = "background-color:black;">
+  <div class="container">
+    <div class="row text-center">
+    <div class="col-md-6 col-sm-6">
+        <div class="achievement-box">
+          <span class="glyphicon glyphicon-user" style="color: white; font-size: 20px; margin-right: 10px;"></span>
+          <span id="account" style="color: #fff; font-size: 20px; font-weight: 400; margin-left: 5px;"></span>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <div class="achievement-box">
+          <span class="glyphicon glyphicon-th-large" style="color: white; font-size: 20px; margin-right: 10px;"></span>
+          <span id="block" style="color: #fff; font-size: 20px; font-weight: 400; margin-left: 5px;"></span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="achievement-box">
+          <span class="glyphicon glyphicon-search" style="color: white; font-size: 20px; margin-right: 10px;"></span>
+          <select id="artistSelect" name="artistSelect" style="font-size: 18px; color: black;">
+            <option selected value="0">Selecione o artista</option>
+            <option value="1">Arctic Monkeys</option>
+            <option value="2">Blackpink</option>
+            <option value="3">BTS</option>
+            <option value="4">Lady Gaga</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="section-title text-center center" style="margin-top: 30px;">
+      <h2 style="color: #ffffff" id="name">Artista</h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center"><img id="foto" src="img/avatar.png" class="img-responsive"></div>
+    </div>
+    <div class="row text-center" style = "margin-top: 30px;">
+      <div class="col-md-6 col-sm-6 wow fadeInDown" data-wow-delay="400ms">
+        <div class="achievement-box"> <span class="count" id="streamings">0</span>
+          <h4>Streamings</h4>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 wow fadeInDown" data-wow-delay="200ms">
+        <div class="achievement-box"> <span class="count" id="royalties">0</span>
+          <h4>Royalties</h4>
+        </div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID
+          <th>Música
+          <th>Artista
+          <th>Duração
+          <th>Streamings
+          <th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1
+          <td id="musica1">-
+          <td id="artista1">-
+          <td id="duracao1">-
+          <td id="streamings1">-
+          <td>
+            <button id="btn1" type="button" class="btn btn-default btn-sm" style="border-radius: 8px;">
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+        <tr>
+          <td>2
+          <td id="musica2">-
+          <td id="artista2">-
+          <td id="duracao2">-
+          <td id="streamings2">-
+          <td><button id="btn2" type="button" class="btn btn-default btn-sm" style="border-radius: 8px;">
+            <span class="glyphicon glyphicon-play"></span>
+          </button>
+        <tr >
+          <td>3
+          <td id="musica3">-
+          <td id="artista3">-
+          <td id="duracao3">-
+          <td id="streamings3">-
+          <td>
+            <button id="btn3" type="button" class="btn btn-default btn-sm" style="border-radius: 8px;">
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="container text-center">
+    <div class="fnav">
+      <p>2020, Raissa Pimentel, Thayna Baldão.</p>
+      <p>Design por <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+var artists = [
+  {
+    "name": "Artista",
+    "foto": "img/avatar.png",
+    "musica1": "-",
+    "artista1": "-",
+    "duracao1": "-",
+    "musica2": "-",
+    "artista2": "-",
+    "duracao2": "-",
+    "musica3": "-",
+    "artista3": "-",
+    "duracao3": "-",
+  },
+  {
+    "name": "Arctic Monkeys",
+    "foto": "img/arcticmonkeys.jpg",
+    "musica1": "Fluorescent Adolescent",
+    "artista1": "Arctic Monkeys",
+    "duracao1": "3:03",
+    "musica2": "R U Mine",
+    "artista2": "Arctic Monkeys",
+    "duracao2": "3:20",
+    "musica3": "Snap out of it",
+    "artista3": "Arctic Monkeys",
+    "duracao3": "3:13",
+  },
+  {
+    "name": "Blackpink",
+    "foto": "img/blackpink.png",
+    "musica1": "How you like that",
+    "artista1": "Blackpink",
+    "duracao1": "03:00",
+    "musica2": "Kill this love",
+    "artista2": "Blackpink",
+    "duracao2": "03:09",
+    "musica3":"Lovesick girls" ,
+    "artista3": "Blackpink",
+    "duracao3": "03:12",
+  },
+  {
+    "name": "BTS",
+    "foto": "img/bts.jpg",
+    "musica1": "DNA",
+    "artista1": "BTS",
+    "duracao1": "03:43",
+    "musica2": "Dynamite",
+    "artista2": "BTS",
+    "duracao2": "03:19",
+    "musica3": "Idol",
+    "artista3": "BTS",
+    "duracao3": "03:42",
+  },
+  {
+    "name": "Lady Gaga",
+    "foto": "img/ladygaga.jpg",
+    "musica1": "Just Dance",
+    "artista1": "Lady Gaga",
+    "duracao1": "04:01",
+    "musica2": "Poker Face",
+    "artista2": "Lady Gaga",
+    "duracao2": "03:57",
+    "musica3": "Rain on me",
+    "artista3": "Lady Gaga feat. Ariana Grande",
+    "duracao3": "03:02",
+  }
+];
+
+var contract;
+$(document).ready(function(){
+  // making conection with blockchain
+  if (typeof web3 !== 'undefined') {
+              // Use MetaMask's provider
+              web3 = new Web3(web3.currentProvider);
+
+          } else {
+              // Use localhost provider or some IP address
+              web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+          }
+
+  /////////////////////////////
+  // To see on console
+  web3.eth.getAccounts().then(console.log);
+  web3.eth.getBlockNumber().then(console.log);
+  web3.eth.isMining().then(console.log);
+
+  // Create variables to use on html page
+  web3.eth.getCoinbase().then(function(coinbase){
+    $('#account').html(coinbase);
+  })
+
+  // Create variables to use on html page
+  web3.eth.getBlockNumber().then(function(block){
+    $('#block').html(block);
+  })
+
+  /////////////////////////////
+  // Sample of a contract's address deployed in Ropsten test network
+   var address = "0xa57955D876cF82Aa7D6ccC984c9f7003E1626FF5"
+  // Deployed Contract's Adress, substitute here with your contract's address
+  // var address = "0xB40dCa2c4b6B84C1131eBDdCf3df6D2f294B0ba8"
+  $('#address').html(address)
+  // Deployed Contract's ABI
+  var abi = [
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_songId",
+              "type": "uint256"
+            }
+          ],
+          "name": "listenSong",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "_artistId",
+              "type": "uint256"
+            }
+          ],
+          "name": "artistBalance",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "_artistId",
+              "type": "uint256"
+            }
+          ],
+          "name": "artistPopularity",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "artists",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "streamingsTotal",
+              "type": "uint256"
+            },
+            {
+              "name": "accountBalance",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "artistsCount",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "songCount",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "_songId",
+              "type": "uint256"
+            }
+          ],
+          "name": "songPopularity",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "songs",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "artistId",
+              "type": "uint256"
+            },
+            {
+              "name": "streamingsCounter",
+              "type": "uint256"
+            },
+            {
+              "name": "streamingsTotal",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ];
+
+  // connect, via web3, your variable contract to the deployed contract, using his ABI and address
+  contract = new web3.eth.Contract(abi, address);
+})
+
+function getSongPopularity(artistId, songId){
+    var id = (artistId - 1)*3 + songId;
+    contract.methods.songPopularity(id).call().then(function(popularity)
+    {
+        $('#streamings' + songId).html(popularity);
+    })
+}
+
+$("#artistSelect").change(function(){
+    var id = parseInt($(this).val());
+    $('#name').html(artists[id].name);
+    $('#foto').attr("src", artists[id].foto);
+
+    if(id > 0){
+      contract.methods.artistPopularity(id).call().then(function(popularity) {
+          $('#streamings').html(popularity);
+      })
+
+      contract.methods.artistBalance(id).call().then(function(balance) {
+          $('#royalties').html(balance);
+      })
+
+      getSongPopularity(id, 1)
+      getSongPopularity(id, 2)
+      getSongPopularity(id, 3)
+
+    } else {
+        $('#streamings').html(0);
+        $('#royalties').html(0);
+
+        $('#streamings1').html("-");
+        $('#streamings2').html("-");
+        $('#streamings3').html("-");
+    }
+
+    $('#musica1').html(artists[id].musica1);
+    $('#musica2').html(artists[id].musica2);
+    $('#musica3').html(artists[id].musica3);
+
+    $('#artista1').html(artists[id].artista1);
+    $('#artista2').html(artists[id].artista2);
+    $('#artista3').html(artists[id].artista3);
+
+    $('#duracao1').html(artists[id].duracao1);
+    $('#duracao2').html(artists[id].duracao2);
+    $('#duracao3').html(artists[id].duracao3);
+});
+
+$("#artistSelect").val("0");
+
+
+function getListenRequest(id)
+{
+  var artistId = parseInt($("#artistSelect").val());
+
+  if(artistId > 0){
+      var songId = (artistId - 1)*3 + id;
+      console.log("Requisição recebida!");
+
+      web3.eth.getAccounts().then(function(accounts)
+      {
+        console.log("Seu bloco está sendo minerado!");
+        var acc = accounts[0];
+        return contract.methods.listenSong(songId).send({from: acc});
+      }).then(function(tx)
+      {
+          console.log(tx);
+          if(!alert("Requisição mineirada no bloco de número " + tx.blockNumber + "\nHash do Bloco = " + tx.blockHash)){
+              window.location.reload();
+          }
+      }).catch(function(tx)
+      {
+          if (tx){
+            alert('Algum erro ocorreu, verifique o console!')
+          }
+          console.log(tx);
+      })
+   }
+}
+
+
+$('#btn1').click(function()
+{
+  getListenRequest(1);
+});
+
+$('#btn2').click(function()
+{
+  getListenRequest(2);
+});
+
+$('#btn3').click(function()
+{
+  getListenRequest(3);
+});
+</script>
+
+
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/easypiechart.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.js"></script>
+<script type="text/javascript" src="js/waypoints.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="js/contact_me.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

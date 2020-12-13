@@ -1,0 +1,298 @@
+
+<html>
+    <body>
+        <div>
+			<p>Royalties App</p>
+			<input placeholder="Song ID" type="text" id="songId">
+			<button id='btnSongId'>Search</button>
+			<button id='btnListen'>Listen</button>
+  			<p>Song: <a id='song'></a></p>
+  			<p>Song Popularity: <a id='songPopularity'></a></p>
+  			<input placeholder="Artist ID" type="text" id="artistId">
+  			<button id='btnArtistId'>Search</button>
+  			<p>Artist: <a id='artist'></a></p>
+  			<p>Artist Popularity: <a id='artistPopularity'></a></p>
+  			<p>Artist Balance: <a id='artistBalance'></a></p>
+  			<p>Account Connected: <a id='coinbase'></a></p>
+			<p>Actual Block Number: <a id='blockNumber'></a></p>
+			<p>Contract Address: <a id='address'></a></p>
+	    </div>
+
+		<!-- To use web3, jquery and materialize (for toast warnings) libs -->
+		<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script>
+			var contract;
+            $(document).ready(function(){
+				// making conection with blockchain
+				if (typeof web3 !== 'undefined') {
+                    // Use MetaMask's provider
+                    web3 = new Web3(web3.currentProvider);
+
+                } else {
+			    // Use localhost provider or some IP address
+                    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+                }
+
+				/////////////////////////////
+				// To see on console
+				web3.eth.getAccounts().then(console.log);
+				web3.eth.getBlockNumber().then(console.log);
+				web3.eth.isMining().then(console.log);
+
+				// Create variables to use on html page
+				web3.eth.getCoinbase().then(function(coinbase){
+					$('#coinbase').html(coinbase);
+				})
+
+				// Create variables to use on html page
+				web3.eth.getBlockNumber().then(function(blockNumber){
+					$('#blockNumber').html(blockNumber);
+				})
+
+				/////////////////////////////
+				// Sample of a contract's address deployed in Ropsten test network
+				 var address = "0xa57955D876cF82Aa7D6ccC984c9f7003E1626FF5"
+				// Deployed Contract's Adress, substitute here with your contract's address
+				// var address = "0xB40dCa2c4b6B84C1131eBDdCf3df6D2f294B0ba8"
+				$('#address').html(address)
+				// Deployed Contract's ABI
+				var abi = [
+							{
+								"constant": false,
+								"inputs": [
+									{
+										"name": "_songId",
+										"type": "uint256"
+									}
+								],
+								"name": "listenSong",
+								"outputs": [],
+								"payable": false,
+								"stateMutability": "nonpayable",
+								"type": "function"
+							},
+							{
+								"inputs": [],
+								"payable": false,
+								"stateMutability": "nonpayable",
+								"type": "constructor"
+							},
+							{
+								"constant": true,
+								"inputs": [
+									{
+										"name": "_artistId",
+										"type": "uint256"
+									}
+								],
+								"name": "artistBalance",
+								"outputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [
+									{
+										"name": "_artistId",
+										"type": "uint256"
+									}
+								],
+								"name": "artistPopularity",
+								"outputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"name": "artists",
+								"outputs": [
+									{
+										"name": "id",
+										"type": "uint256"
+									},
+									{
+										"name": "name",
+										"type": "string"
+									},
+									{
+										"name": "streamingsTotal",
+										"type": "uint256"
+									},
+									{
+										"name": "accountBalance",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [],
+								"name": "artistsCount",
+								"outputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [],
+								"name": "songCount",
+								"outputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [
+									{
+										"name": "_songId",
+										"type": "uint256"
+									}
+								],
+								"name": "songPopularity",
+								"outputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							},
+							{
+								"constant": true,
+								"inputs": [
+									{
+										"name": "",
+										"type": "uint256"
+									}
+								],
+								"name": "songs",
+								"outputs": [
+									{
+										"name": "id",
+										"type": "uint256"
+									},
+									{
+										"name": "name",
+										"type": "string"
+									},
+									{
+										"name": "artistId",
+										"type": "uint256"
+									},
+									{
+										"name": "streamingsCounter",
+										"type": "uint256"
+									},
+									{
+										"name": "streamingsTotal",
+										"type": "uint256"
+									}
+								],
+								"payable": false,
+								"stateMutability": "view",
+								"type": "function"
+							}
+						];
+
+				// connect, via web3, your variable contract to the deployed contract, using his ABI and address
+				contract = new web3.eth.Contract(abi, address);
+			})
+
+			$('#btnSongId').click(function()
+			{
+				// M.toast({html:'Transaction received and will be mined!'});
+				// console.log("Transaction received and will be mined!");
+				var id = 0;
+				id = parseInt($('#songId').val());
+
+				contract.methods.songPopularity(id).call().then(function(popularity)
+                {
+                    $('#songPopularity').html(popularity);
+                })
+			})
+
+			$('#btnArtistId').click(function()
+			{
+				// M.toast({html:'Transaction received and will be mined!'});
+				// console.log("Transaction received and will be mined!");
+				var id = 0;
+				id = parseInt($('#artistId').val());
+
+				contract.methods.artistPopularity(id).call().then(function(popularity)
+                {
+                    $('#artistPopularity').html(popularity);
+                })
+
+                contract.methods.artistBalance(id).call().then(function(balance)
+                {
+                    $('#artistBalance').html(balance);
+                })
+			})
+
+			$('#btnListen').click(function()
+			{
+				var id = 0;
+				id = parseInt($('#songId').val());
+
+				M.toast({html:'Request received and will be mined!'});
+				console.log("Request received and will be mined!");
+
+				web3.eth.getAccounts().then(function(accounts)
+				{
+					var acc = accounts[0];
+					return contract.methods.listenSong(id).send({from: acc});
+				}).then(function(tx)
+				{
+					console.log(tx);
+					if(!alert("Transaction mined at block " + tx.blockNumber + "\nBlockHash = " + tx.blockHash)){window.location.reload();}
+				}).catch(function(tx)
+				{
+					if (tx){
+						alert('Some error has occurred, go to console!')
+					}
+					console.log(tx);
+					M.toast({html:tx})
+				})
+			})
+        </script>
+    </body>
+</html>
